@@ -266,7 +266,7 @@ class Player:
             raise InvalidIDProvided(f'No guild found for id <{self.guild_id}>')
 
         self.channel_id = channel_id
-        await self._get_shard_socket(guild.shard_id).voice_state(self.guild_id, str(channel_id))
+        await self._get_shard_socket(guild.shard_id if guild else 0).voice_state(self.guild_id, str(channel_id))
         __log__.info(f'PLAYER | Connected to voice channel:: {self.channel_id}')
 
     async def disconnect(self) -> None:
@@ -280,7 +280,7 @@ class Player:
 
         __log__.info(f'PLAYER | Disconnected from voice channel:: {self.channel_id}')
         self.channel_id = None
-        await self._get_shard_socket(guild.shard_id).voice_state(self.guild_id, None)
+        await self._get_shard_socket(guild.shard_id if guild else 0).voice_state(self.guild_id, None)
 
     async def play(self, track: Track, *, replace: bool = True, start: int = 0, end: int = 0) -> None:
         """|coro|
