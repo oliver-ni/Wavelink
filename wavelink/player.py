@@ -262,8 +262,6 @@ class Player:
             The channel ID to connect to.
         """
         guild = self.bot.get_guild(self.guild_id)
-        if not guild:
-            raise InvalidIDProvided(f'No guild found for id <{self.guild_id}>')
 
         self.channel_id = channel_id
         await self._get_shard_socket(guild.shard_id if guild else 0).voice_state(self.guild_id, str(channel_id))
@@ -275,8 +273,6 @@ class Player:
         Disconnect from a Discord Voice Channel.
         """
         guild = self.bot.get_guild(self.guild_id)
-        if not guild:
-            raise InvalidIDProvided(f'No guild found for id <{self.guild_id}>')
 
         __log__.info(f'PLAYER | Disconnected from voice channel:: {self.channel_id}')
         self.channel_id = None
