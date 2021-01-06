@@ -341,10 +341,8 @@ class Client:
         for node in nodes:
             if not node.is_available:
                 continue
-            if node.shard_id == guild.shard_id:
-                shard_options.append(node)
-            if node.region.lower() == str(guild.region).lower():
-                region_options.append(node)
+            shard_options.append(node)
+            region_options.append(node)
 
         if not shard_options and not region_options:
             # Sort by len of node players
