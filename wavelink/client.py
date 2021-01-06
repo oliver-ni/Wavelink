@@ -313,9 +313,9 @@ class Client:
         else:
             return player
 
-        guild = self.bot.get_guild(guild_id)
-        if not guild:
-            raise InvalidIDProvided(f'A guild with the id <{guild_id}> can not be located.')
+#         guild = self.bot.get_guild(guild_id)
+#         if not guild:
+#             raise InvalidIDProvided(f'A guild with the id <{guild_id}> can not be located.')
 
         if not self.nodes:
             raise ZeroConnectedNodes('There are not any currently connected nodes.')
